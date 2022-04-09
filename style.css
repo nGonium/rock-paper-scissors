@@ -1,0 +1,18 @@
+#main * {
+    text-align: center;
+}
+
+.choices {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.choice {
+    width: 200px;
+    height: 200px;
+    background-color: black;
+    color: white;
+    /* Text properties to be removed */
+    line-height: 200px;
+}

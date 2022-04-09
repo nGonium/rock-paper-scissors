@@ -6,8 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock, Paper, Scissors!</title>
     <script src="main.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div id="main">
+        <h1>Rock, Paper, Scissors!</h1>
+        <div class="choices">
+            <div class="choice" data-choice="Rock">Rock</div>
+            <div class="choice" data-choice="Paper">Paper</div>
+            <div class="choice" data-choice="Scissors">Scissors</div>
+        </div>
+        <div class="scores">
+            <div data-player="player"></div>
+            <div data-player="computer"></div>
+        </div>
+    </div>
 </body>
 </html>
