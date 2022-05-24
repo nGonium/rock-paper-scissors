@@ -12,13 +12,19 @@
     <div id="main">
         <h1>Rock, Paper, Scissors!</h1>
         <div class="choices">
-            <div class="choice" data-choice="Rock">Rock</div>
-            <div class="choice" data-choice="Paper">Paper</div>
-            <div class="choice" data-choice="Scissors">Scissors</div>
+            <button class="choice" data-choice="Rock">Rock</button>
+            <button class="choice" data-choice="Paper">Paper</button>
+            <button class="choice" data-choice="Scissors">Scissors</button>
         </div>
         <div class="scores">
-            <div data-player="player"></div>
-            <div data-player="computer"></div>
+            <div data-player="player">
+                <span>Player</span>
+                <span id="player-score"></span>
+            </div>
+            <div data-player="computer">
+                <span>Computer</span>
+                <span id="opponent-score"></span>
+            </div>
         </div>
     </div>
 </body>

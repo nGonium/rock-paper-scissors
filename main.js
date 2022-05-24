@@ -1,39 +1,27 @@
-//Player : computer selection pairs that result in player victory
+// Player : computer selection pairs that result in player victory
 const WINCONDITIONS = {
-    'Rock': 'Scissors',
-    'Paper': 'Rock',
-    'Scissors': 'Rock'
+    Rock: 'Scissors',
+    Paper: 'Rock',
+    Scissors: 'Rock'
 }
 
-// game();
-// playerPlay()
-
-function game(rounds = 5){
-    let score = 0;
-    for(i = 0; i < rounds; i++){
-        let playerSelection = prompt('Select: Rock, Paper or Scissors?')
-        playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
-        while(!(playerSelection in WINCONDITIONS)){
-            playerSelection = prompt('Invalid selection, select again: Rock, Paper or Scissors?');
-            playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
-        }
-        const computerSelection = computerPlay();
-
-        const round = playRound(playerSelection, computerSelection);
-        score += round;
-        console.log(
-            'Player: ' + playerSelection, 
-            '\nComputer: ' + computerSelection, 
-            '\nScore: ' + (round > 0 ? '+' + round : round),
-            '\nTotal score: ' + score);
-    }
- 
+const game = {
+    playerScore: 0,
+    opponentScore: 0,
+    round: 0,
+    maxRounds: 20,
+    player: 'Player',
+    opponent: 'Opponent'
 }
 
-function playRound(playerSelection, computerSelection){
-    if(playerSelection === computerSelection) return 0;
-    if(WINCONDITIONS[playerSelection] === computerSelection) return 1;
-    return -1;
+startGame()
+
+function playRound(e){
+    const playerSelection = e.target.dataset.choice;
+    const computerSelection = computerPlay();
+    if(playerSelection === computerSelection) return updateGame('Draw');
+    if(WINCONDITIONS[playerSelection] === computerSelection) return updateGame('Player');
+    return updateGame('Opponent');
 }
 
 function computerPlay(){
@@ -41,11 +29,38 @@ function computerPlay(){
     return choices[Math.floor(Math.random() * 3)];
 }
 
-function playerPlay(){
+function startGame(){
+    game.playerScore = 0,
+    game.opponentScore = 0,
+    game.round = 0,
+
+    document.querySelector('#player-score').textContent = game.playerScore;
+    document.querySelector('#opponent-score').textContent = game.opponentScore;
+
+    // Add event listeners to choice buttons
+    document.querySelectorAll('[data-choice]').forEach(
+        el => el.addEventListener('click', playRound)
+    )
+}
+
+function updateGame(winner){
+    if(winner === 'Player'){
+        game.playerScore++;
+        document.querySelector('#player-score').textContent = game.playerScore;
+    } else if(winner === 'Opponent'){
+        game.opponentScore++;
+        document.querySelector('#opponent-score').textContent = game.opponentScore;
+    }
+
+    game.round++;
+    if(game.round >= game.maxRounds){
+        endGame();
+    }
+}
+
+function endGame(){
     let choiceElements = document.querySelectorAll('[data-choice]');
     choiceElements.forEach(el => {
-        el.addEventListener('click', e => {
-            playerPlay(e)
-        })
+        el.removeEventListener('click', playRound);
     })
 }
