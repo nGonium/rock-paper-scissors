@@ -16,18 +16,16 @@ function getPlayerChoice(test = false) {
     do {
         playerSelection = prompt('Rock, paper or scissors?');
         playerSelection = playerSelection.toLowerCase();
-    } while (!playerSelection in Object.keys(WIN_CONDITIONS));
+    } while (!(playerSelection in WIN_CONDITIONS));
     return playerSelection;
 }
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
         return {result: 'draw', score: 0};
-    }
-    else if (WIN_CONDITIONS[playerSelection] === computerSelection) {
+    } else if (WIN_CONDITIONS[playerSelection] === computerSelection) {
         return {result: 'player win', score: 1};
     } else {
         return {result: 'computer win', score: -1};
-
     }
 }
 function game() {
