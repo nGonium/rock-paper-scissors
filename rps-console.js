@@ -33,10 +33,14 @@ function playRound(playerSelection, computerSelection) {
 function game() {
     let score = 0;
     for (let round = 1; round <= 5; round++) {
-        const result = playRound(getPlayerChoice(), getComputerChoice());
+        const playerSelection = getPlayerChoice();
+        const computerSelection = getComputerChoice();
+        const result = playRound(playerSelection, computerSelection);
         score += result.score;
-        console.log(result.result, result.score);
+        const out = `Player: ${playerSelection}\n` +
+            `Computer: ${computerSelection}\n` +
+            `${result.result}, current score ${score}`;
+        console.log(out);
     }
 }
 game();
-// console.log(getPlayerChoice());
