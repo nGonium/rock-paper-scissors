@@ -16,6 +16,7 @@ resultsDisplay.style['white-space'] = 'pre-line';
 
 Array.from(rpsBtns.children).forEach(btn => {
     btn.addEventListener('click', e => {
+        if(GAME_STATE.roundCount >= 5) return undefined;
         playRound(e.target.textContent.toLowerCase(), getComputerChoice());
         displayResults();
     })
@@ -51,7 +52,7 @@ function displayResults() {
         GAME_STATE.score < 0 ? 'Computer wins the game\r\n' + out:
         'Game ended in a draw\r\n' + out;
     }
-    
+
     resultsDisplay.textContent = out;
 
 }

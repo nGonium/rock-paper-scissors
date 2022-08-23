@@ -1,5 +1,3 @@
-- Display the running score, and announce a winner of the game once one player reaches 5 points.
-- You will likely have to refactor (rework/rewrite) your original code to make it work for this. That’s OK! Reworking old code is an important part of a programmer’s life.
 - Once you’re all done with your UI and made sure everything’s satisfactory, commit your changes to the rps-ui branch.
 - Now let’s take a look at how we can merge the changes from our rps-ui branch back to our main branch.
 - Checkout the branch we want to merge INTO i.e. main with the command git checkout main.
