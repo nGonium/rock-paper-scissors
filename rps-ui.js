@@ -8,6 +8,7 @@ const WIN_CONDITIONS = {
 }
 const GAME_STATE = {
     score: 0,
+    roundCount: 1,
     selections: {}
 }
 // Allows line breaks in results
@@ -36,10 +37,21 @@ function playRound(playerSelection, computerSelection) {
         GAME_STATE.round =  {result: 'computer win', score: -1};
     }
     GAME_STATE.score += GAME_STATE.round.score;
+    GAME_STATE.roundCount++;
 }
+
 function displayResults() {
-    resultsDisplay.textContent = 
+    let out = 
     `Player: ${GAME_STATE.selections.player}\r\n` +
     `Computer: ${GAME_STATE.selections.computer}\r\n` +
     `${GAME_STATE.round.result}, current score ${GAME_STATE.score}`;
+    
+    if (GAME_STATE.roundCount >= 5) {
+        out = GAME_STATE.score > 0 ? `Player wins the game\r\n` + out:
+        GAME_STATE.score < 0 ? 'Computer wins the game\r\n' + out:
+        'Game ended in a draw\r\n' + out;
+    }
+    
+    resultsDisplay.textContent = out;
+
 }
